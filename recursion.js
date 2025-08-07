@@ -45,7 +45,16 @@ function mergeSort(array){
     let sortedArray = []
     let leftPointer = 0;
     let rightPointer = 0;
-    for(let i = 0; array.length; i++){
+    
+    for(let i = 0; i < array.length; i++){
+        if(leftPointer === sortedLeft.length){
+            sortedArray = sortedArray.concat(sortedRight.slice(rightPointer));
+            break;
+        }  
+        if(rightPointer === sortedRight.length){
+            sortedArray = sortedArray.concat(sortedLeft.slice(leftPointer));
+            break;
+        }
         if(sortedLeft[leftPointer] > sortedRight[rightPointer]){
             sortedArray.push(sortedRight[rightPointer]);
             rightPointer++;
@@ -54,16 +63,35 @@ function mergeSort(array){
             sortedArray.push(sortedLeft[leftPointer]);
             leftPointer++;
         }
-        if(leftPointer === sortedLeft.length){
-            sortedArray = sortedArray.concat(sortedRight);
-            return sortedArray;
-        }
-        if(rightPointer === sortedRight.length){
-            sortedArray = sortedArray.concat(sortedLeft);
-            return sortedArray;
+        else{
+            sortedArray.push(sortedLeft[leftPointer]);
+            leftPointer++;
         }
     }
     return sortedArray;
+}
+
+//cleanest version of mergeSort according to GPT:
+
+function mergeSortGPT(array) {
+    if (array.length <= 1) return array;
+
+    const middle = Math.floor(array.length / 2);
+    const left = mergeSort(array.slice(0, middle));
+    const right = mergeSort(array.slice(middle));
+
+    const sorted = [];
+    let i = 0, j = 0;
+
+    while (i < left.length && j < right.length) {
+        if (left[i] <= right[j]) {
+            sorted.push(left[i++]);
+        } else {
+            sorted.push(right[j++]);
+        }
+    }
+
+    return sorted.concat(left.slice(i)).concat(right.slice(j));
 }
 
 console.log(mergeSort([3, 2, 1, 13, 8, 5, 0, 1]));
