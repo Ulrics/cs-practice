@@ -1,3 +1,5 @@
+export {LinkedList};
+
 class LinkedList {
     constructor(){
         this.head = null;
@@ -28,13 +30,13 @@ class LinkedList {
             this.head = addNode;
         }
     }
-    size(){
+    getSize(){
         return this.size;
     }
-    head(){
+    getHead(){
         return this.head;
     }
-    tail(){
+    getTail(){
         return this.tail;
     }
     at(index){
@@ -51,7 +53,69 @@ class LinkedList {
         return currentNode;
     }
     pop(){
-        
+        let currentNode = this.head;
+        let previousNode;
+        while(currentNode !== this.tail){
+            previousNode = currentNode;
+            currentNode = currentNode.nextNode;
+        }
+        previousNode.nextNode = null;
+        this.tail = previousNode;
+        this.size--;
+    }
+    contains(value){
+        let currentNode = this.head;
+        while(currentNode !== null){
+            if(currentNode.value === value){
+                return true;
+            }
+            currentNode = currentNode.nextNode;
+        }
+        return false;
+    }
+    find(value){
+        let currentNode = this.head;
+        let index = 0;
+        while(currentNode !== null){
+            if(currentNode.value === value){
+                return index;
+            }
+            currentNode = currentNode.nextNode;
+            index++;
+        }
+        return null;
+    }
+    toString(){
+        let currentNode = this.head;
+        let printString = "";
+        while(currentNode !== null){
+            printString = printString.concat(`( ${currentNode.value} ) -> `)
+            currentNode = currentNode.nextNode;
+        }
+        printString = printString.concat(`null`);
+        return printString;
+    }
+    insertAt(value, index){
+        let currentNode = this.head;
+        let previousNode = null;
+        const addNode = new Node(value);
+        while(currentNode !== this.at(index)){
+            previousNode = currentNode;
+            currentNode = currentNode.nextNode;
+        }
+        previousNode.nextNode = addNode;
+        addNode.nextNode = currentNode;
+    }
+    removeAt(index){
+        let currentNode = this.head;
+        let previousNode = null;
+        let nextNode = null;
+        while(currentNode !== this.at(index)){
+            previousNode = currentNode;
+            currentNode = currentNode.nextNode;
+            nextNode = currentNode.nextNode;
+        }
+        previousNode.nextNode = nextNode;
     }
 }
 
@@ -62,13 +126,3 @@ class Node{
     }
 }
 
-const list = new LinkedList();
-
-list.append("dog");
-list.append("cat");
-list.append("parrot");
-list.append("hamster");
-list.append("snake");
-list.append("turtle");
-
-console.log(list.at(3));
