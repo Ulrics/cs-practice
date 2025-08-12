@@ -107,6 +107,7 @@ class LinkedList {
         addNode.nextNode = currentNode;
     }
     removeAt(index){
+        this.size--;
         let currentNode = this.head;
         let previousNode = null;
         let nextNode = null;
