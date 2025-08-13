@@ -1,6 +1,31 @@
 import { LinkedList } from "./linkedlist.js";
 import { HashMap } from "./hashmap.js"
+import { Tree } from "./binarytree.js";
 
+const sortedTestArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+
+const testTree = new Tree(sortedTestArray);
+console.log(testTree.buildTree());
+console.log(testTree.prettyPrint(testTree.buildTree()));
+
+/*
+LinkedList Testing
+const list = new LinkedList();
+
+list.append("dog");
+list.append("cat");
+list.append("parrot");
+list.append("hamster");
+list.append("snake");
+list.append("turtle");
+
+list.insertAt("clown fish", 3);
+list.removeAt(4);
+console.log(list.toString());
+*/
+
+/*
+HashMap Testing
 const test = new HashMap()
 
 test.set('apple', 'red');
@@ -18,21 +43,4 @@ test.set('lion', 'golden');
 test.set('moon', 'silver')
 
 console.log(test.values());
-
-
-
-/*
-LinkedList Testing
-const list = new LinkedList();
-
-list.append("dog");
-list.append("cat");
-list.append("parrot");
-list.append("hamster");
-list.append("snake");
-list.append("turtle");
-
-list.insertAt("clown fish", 3);
-list.removeAt(4);
-console.log(list.toString());
 */
