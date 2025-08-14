@@ -5,9 +5,21 @@ import { Tree } from "./binarytree.js";
 const sortedTestArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
 
 const testTree = new Tree(sortedTestArray);
-console.log(testTree.buildTree());
-console.log(testTree.prettyPrint(testTree.buildTree()));
+console.log(prettyPrint(testTree.root));
 
+
+function prettyPrint(node, prefix = '', isLeft = true){
+        if (node === null) {
+            return;
+        }
+        if (node.rightChild !== null) {
+            prettyPrint(node.rightChild, `${prefix}${isLeft ? '│   ' : '    '}`, false);
+        }
+        console.log(`${prefix}${isLeft ? '└── ' : '┌── '}${node.data}`);
+        if (node.leftChild !== null) {
+            prettyPrint(node.leftChild, `${prefix}${isLeft ? '    ' : '│   '}`, true);
+        }
+    };
 /*
 LinkedList Testing
 const list = new LinkedList();
