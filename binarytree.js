@@ -193,6 +193,12 @@ class Tree{
     isBalanced(){
         check(this.root).balanced;
     }
+
+    rebalance(){
+        let valueArray = [];
+        this.inOrderForEach(node => valueArray.push(node.value))
+        this.root = buildTree(valueArray);
+    }
 }
 
 function getSuccessor(node) {
