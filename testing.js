@@ -2,10 +2,12 @@ import { LinkedList } from "./linkedlist.js";
 import { HashMap } from "./hashmap.js"
 import { Tree } from "./binarytree.js";
 
-const sortedTestArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+const sortedTestArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15]
 
 const testTree = new Tree(sortedTestArray);
+testTree.insert(10);
 console.log(prettyPrint(testTree.root));
+console.log(testTree.find(10));
 
 
 function prettyPrint(node, prefix = '', isLeft = true){
